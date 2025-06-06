@@ -2,13 +2,14 @@ import sqlite3
 import yagmail
 import time
 import os
+from dotenv import load_dotenv
 
-DB_PATH = "jobs.db"
-RESUME_DIR = "resumes"  
-SENDER_EMAIL = "syedtahafaisal1@gmail.com"
-GMAIL_APP_PASSWORD = "penu qjir npqh fjcd" 
-# SENDER_EMAIL = "tahafaisalapps@gmail.com"
-# GMAIL_APP_PASSWORD = "klyh lzzo bvhe dtmk" 
+load_dotenv()
+
+DB_PATH = os.getenv("DB_PATH", "jobs.db")
+RESUME_DIR = os.getenv("RESUME_DIR", "resumes")
+SENDER_EMAIL = os.getenv("SENDER_EMAIL")
+GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD")
 
 def send_applications():
     conn = sqlite3.connect(DB_PATH)
